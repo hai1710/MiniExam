@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Picture</title>
+</head>
+<body>
+<h1>CREATE PICTURE</h1>
+<p><a href="/">Back to List</a></p>
+<form th:action="@{/create-picture}" th:object="${picture}" method="post">
+    <fieldset>
+        <legend>New Picture</legend>
+        <table border="1 px">
+            <tr>
+                <td>Name Picture: </td>
+                <td><input type="text" th:field="*{name}"></td>
+            </tr>
+            <tr>
+                <td>Height : </td>
+                <td><input type="number" th:field="*{height_size}" step="0.1"></td>
+            </tr>
+            <tr>
+                <td>Width : </td>
+                <td><input type="number" th:field="*{width_size}" step="0.1"></td>
+            </tr>
+            <tr>
+                <td>Material : </td>
+                <td><input type="text" th:field="*{material}"></td>
+            </tr>
+            <tr>
+                <td>Description : </td>
+                <td><input type="text" th:field="*{description}"></td>
+            </tr>
+            <tr>
+                <td>Price : </td>
+                <td><input type="number" th:field="*{price}" step="0.01"></td>
+            </tr>
+            <tr>
+                <td>Category: </td>
+                <td>
+                    <th:block th:each="category : ${categories}">
+                        <input type="checkbox" th:field="*{categoryList}"
+                               th:value="${category.id}" th:text="${category.name_category}">
+                    </th:block>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Save"></td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
+</body>
+</html>

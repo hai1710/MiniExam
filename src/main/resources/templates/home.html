@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Picture</title>
+    <style>
+        /* Định dạng cho các thẻ đầu mục */
+        h1 {
+            color: navy;
+            font-size: 24px;
+        }
+
+        /* Định dạng cho bảng */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        /* Định dạng cho các ô trong bảng */
+        td, th {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* Định dạng cho các thẻ đường dẫn */
+        a {
+            color: navy;
+            text-decoration: none;
+        }
+        a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<p>
+    <a href="/create-picture">Create new Picture</a>
+</p>
+
+<h1>Search Picture By Name and Category</h1>
+<form action="/search" method="get">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <label for="category">Category:</label>
+    <select id="category" name="categoryId">
+        <option value="">--Select Category--</option>
+        <th:block th:each="category: ${categories}">
+            <option th:value="${category.id}" th:text="${category.name_category}"></option>
+        </th:block>
+    </select>
+    <input type="submit" value="search">
+</form>
+<h1>List Picture</h1>
+<table border="1 px">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Height</th>
+        <th>Width</th>
+        <th>material</th>
+        <th>description</th>
+        <th>price</th>
+        <th>category List</th>
+    </tr>
+    <tbody>
+    <tr th:each="picture : ${pictures}">
+        <td th:text="${picture.id}"></td>
+        <td th:text="${picture.name}"></td>
+        <td th:text="${picture.height_size}"></td>
+        <td th:text="${picture.width_size}"></td>
+        <td th:text="${picture.material}"></td>
+        <td th:text="${picture.description}"></td>
+        <td th:text="${picture.price}"></td>
+        <td>
+            <th:block th:each="category: ${picture.categoryList}">
+                <span th:text="${category.name_category }"></span>
+            </th:block>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
