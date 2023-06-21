@@ -8,7 +8,7 @@ function showAll(){
             let picture = "";
             picture += `<table border="1px">
                             <tr>
-                                 <th>ID</th>
+                                 <th>ID</th>    
                                  <th>Name</th>
                                  <th>Height</th>
                                  <th>Width</th>
@@ -100,25 +100,25 @@ function savePicture(){
         };
         selectedCategory.push(category);
 
-        let newPicture = {
-            name: name,
-            height_size: height_size,
-            width_size: width_size,
-            material: material,
-            description: description,
-            price: price,
-            categoryList: selectedCategory
-        };
-        $.ajax({
-            type: "POST",
-            url:" http://localhost:8080/api",
-            data: JSON.stringify(newPicture),
-            contentType: "application/json",
-            success: function () {
-                showAll();
-            }
-        });
     }
+    let newPicture = {
+        name: name,
+        height_size: height_size,
+        width_size: width_size,
+        material: material,
+        description: description,
+        price: price,
+        categoryList: selectedCategory
+    };
+    $.ajax({
+        type: "POST",
+        url:" http://localhost:8080/api",
+        data: JSON.stringify(newPicture),
+        contentType: "application/json",
+        success: function () {
+            showAll();
+        }
+    });
 }
 function showFormSearch() {
     let form = "";
